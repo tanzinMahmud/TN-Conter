@@ -1,21 +1,11 @@
-import React, { useState } from 'react'
-import Button from '../../components/button/button'
-import Header from '../../components/header/header'
+import React, { useContext } from 'react'
+import Button from '../../components/button/Button'
+import Header from '../../components/header/Header'
+
+import CounterContext from '../../context/CounterContext'
 
 const home = () => {
-    const [counter, setCounter] = useState(0)
-
-    const increment = () => {
-        setCounter((prevState) => prevState + 1)
-    }
-
-    const decrement = () => {
-        setCounter((prevState) => prevState - 1)
-    }
-
-    const reset = () => {
-        setCounter(0)
-    }
+    const { increment, decrement, reset, counter } = useContext(CounterContext)
 
     return (
         <div className='container'>
