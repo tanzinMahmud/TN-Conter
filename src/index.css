@@ -1,5 +1,17 @@
-.container{
-    max-width: 1366px;
-    margin-left: 13px;
-    margin-right: 13px;
+:root{
+    --bgColor:#1e90ff;
+    --white:#ffffff;
+    --green:#9dcb9d;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.justify-content-between{
+    justify-content: space-between;
+}
+
+.text-center{
+    text-align: center;
 }
