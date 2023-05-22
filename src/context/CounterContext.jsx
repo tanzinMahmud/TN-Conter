@@ -1,28 +1,45 @@
-import { createContext, useState } from 'react'
+import { createContext, useReducer, useState } from 'react'
 
+// initial state
+const initialState = {
+    counter: 0,
+}
+
+// create context
 const CounterContext = createContext()
 
-export const CounterProvider = ({ children }) => {
-    const [counter, setCounter] = useState(0)
-
-    const increment = () => {
-        setCounter((prevState) => prevState + 1)
+// reducer
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'INCREMENT':
+            return {
+                ...state,
+                counter: state.counter + 1,
+            }
+        case 'DECREMENT':
+            return {
+                ...state,
+                counter: state.counter > 0 ? state.counter - 1 : 0,
+            }
+        case 'RESET':
+            return {
+                ...state,
+                counter: 0,
+            }
+        default:
+            return state
     }
+}
 
-    const decrement = () => {
-        setCounter((prevState) => (prevState > 0 ? prevState - 1 : 0))
-    }
+// provider
+const CounterProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(reducer, initialState)
 
-    const reset = () => {
-        setCounter(0)
-    }
     return (
-        <CounterContext.Provider
-            value={{ increment, decrement, reset, counter }}
-        >
+        <CounterContext.Provider value={{ state, dispatch }}>
             {children}
         </CounterContext.Provider>
     )
 }
 
-export default CounterContext
+export { CounterContext, CounterProvider }
