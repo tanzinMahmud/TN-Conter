@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
-import Button from '../../components/button/Button'
-import Header from '../../components/header/Header'
+import Button from '../../components/Button/Button'
+import Header from '../../components/Header/Header'
+import './Home.css'
 
 import CounterContext from '../../context/CounterContext'
 
