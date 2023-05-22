@@ -2,13 +2,13 @@ import React from 'react'
 import Home from './screens/Home/Home'
 import './App.css'
 
-import { CounterProvider } from './context/CounterContext'
+import { AppProvider } from './store'
 
 const App = () => {
     return (
-        <CounterProvider>
+        <AppProvider>
             <Home />
-        </CounterProvider>
+        </AppProvider>
     )
 }
 

@@ -3,33 +3,38 @@ import Button from '../../components/Button/Button'
 import Header from '../../components/Header/Header'
 import './Home.css'
 
-import { CounterContext } from '../../context/CounterContext'
+import { AppContext } from '../../store'
+
+import { increment, decrement, reset } from '../../actions/counterActions'
 
 const home = () => {
-    const { state, dispatch } = useContext(CounterContext)
+    const {
+        state: { counter },
+        dispatch
+    } = useContext(AppContext)
 
-    const increment = () => {
-        dispatch({ type: 'INCREMENT' })
+    const incre = () => {
+        increment(dispatch)
     }
 
-    const decrement = () => {
-        dispatch({ type: 'DECREMENT' })
+    const decre = () => {
+        decrement(dispatch)
     }
 
-    const reset = () => {
-        dispatch({ type: 'RESET' })
+    const res = () => {
+        reset(dispatch)
     }
 
     return (
         <div className='container'>
             <Header title='Counter' />
             <div className='d-flex justify-content-between'>
-                <Button title='-' action={decrement} />
-                <h1>{state.counter}</h1>
-                <Button title='+' action={increment} />
+                <Button title='-' action={decre} />
+                <h1>{counter}</h1>
+                <Button title='+' action={incre} />
             </div>
             <div className='text-center'>
-                <Button title='Reset' action={reset} />
+                <Button title='Reset' action={res} />
             </div>
         </div>
     )
